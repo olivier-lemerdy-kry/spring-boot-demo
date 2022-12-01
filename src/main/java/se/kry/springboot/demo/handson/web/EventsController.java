@@ -1,7 +1,7 @@
 package se.kry.springboot.demo.handson.web;
 
+import jakarta.validation.Valid;
 import java.util.UUID;
-import javax.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
