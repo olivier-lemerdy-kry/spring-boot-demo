@@ -1,6 +1,6 @@
 package se.kry.springboot.demo.handson.infra.data.mongo;
 
-import javax.validation.Validator;
+import jakarta.validation.Validator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.EnableReactiveMongoAuditing;

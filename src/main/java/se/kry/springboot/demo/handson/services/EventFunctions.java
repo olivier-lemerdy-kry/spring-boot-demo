@@ -1,6 +1,6 @@
 package se.kry.springboot.demo.handson.services;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import se.kry.springboot.demo.handson.data.Event;
 import se.kry.springboot.demo.handson.domain.EventCreationRequest;
 import se.kry.springboot.demo.handson.domain.EventParticipantsUpdateRequest;

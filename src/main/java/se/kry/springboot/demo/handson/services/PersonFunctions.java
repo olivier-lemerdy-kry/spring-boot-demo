@@ -1,6 +1,6 @@
 package se.kry.springboot.demo.handson.services;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import se.kry.springboot.demo.handson.data.Person;
 import se.kry.springboot.demo.handson.domain.PersonCreationRequest;
 import se.kry.springboot.demo.handson.domain.PersonResponse;

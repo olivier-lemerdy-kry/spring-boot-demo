@@ -1,8 +1,8 @@
 package se.kry.springboot.demo.handson.domain;
 
+import jakarta.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Optional;
-import javax.validation.constraints.Size;
 
 public record EventUpdateRequest(
     Optional<@Size(max = EventConstants.Sizes.TITLE) String> title,

@@ -4,8 +4,8 @@ import static se.kry.springboot.demo.handson.services.PersonFunctions.newPersonF
 import static se.kry.springboot.demo.handson.services.PersonFunctions.updatePersonFromUpdateRequest;
 import static se.kry.springboot.demo.handson.util.ReactivePreconditions.requireNonNull;
 
+import jakarta.validation.constraints.NotNull;
 import java.util.UUID;
-import javax.validation.constraints.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;

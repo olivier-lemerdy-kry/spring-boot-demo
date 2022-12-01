@@ -51,7 +51,7 @@ class ApplicationTest {
   private PersonRepository personRepository;
 
   @DynamicPropertySource
-  static void mySqlProperties(DynamicPropertyRegistry registry) {
+  static void mongoProperties(DynamicPropertyRegistry registry) {
     registry.add("spring.data.mongodb.uri", mongoDb::getReplicaSetUrl);
   }
 
