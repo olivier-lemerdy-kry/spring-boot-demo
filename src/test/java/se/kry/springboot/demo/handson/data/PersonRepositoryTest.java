@@ -21,7 +21,7 @@ import se.kry.springboot.demo.handson.domain.PersonDefaults;
 class PersonRepositoryTest {
 
   @Container
-  private static final MongoDBContainer mongoDb = new MongoDBContainer("mongo:4.0.10");
+  private static final MongoDBContainer mongoDb = new MongoDBContainer("mongo:5.0");
 
   @Autowired
   private ReactiveMongoTemplate template;
