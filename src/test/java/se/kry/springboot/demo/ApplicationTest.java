@@ -26,6 +26,7 @@ import se.kry.springboot.demo.data.EventRepository;
 import se.kry.springboot.demo.data.PersonRepository;
 import se.kry.springboot.demo.domain.EventDefaults;
 import se.kry.springboot.demo.domain.PersonDefaults;
+import se.kry.springboot.demo.infra.data.mongo.MongoDefaults;
 
 @SpringBootTest
 @Testcontainers
@@ -33,7 +34,7 @@ import se.kry.springboot.demo.domain.PersonDefaults;
 class ApplicationTest {
 
   @Container
-  private static final MongoDBContainer mongoDb = new MongoDBContainer("mongo:5.0");
+  private static final MongoDBContainer mongoDb = new MongoDBContainer(MongoDefaults.DOCKER_IMAGE_NAME);
 
   @Autowired
   private WebTestClient webTestClient;

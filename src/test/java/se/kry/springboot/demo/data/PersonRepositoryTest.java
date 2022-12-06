@@ -15,13 +15,14 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import reactor.test.StepVerifier;
 import se.kry.springboot.demo.domain.PersonDefaults;
+import se.kry.springboot.demo.infra.data.mongo.MongoDefaults;
 
 @DataMongoTest
 @Testcontainers
 class PersonRepositoryTest {
 
   @Container
-  private static final MongoDBContainer mongoDb = new MongoDBContainer("mongo:5.0");
+  private static final MongoDBContainer mongoDb = new MongoDBContainer(MongoDefaults.DOCKER_IMAGE_NAME);
 
   @Autowired
   private ReactiveMongoTemplate template;
