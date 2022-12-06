@@ -9,6 +9,9 @@ dependencyResolutionManagement {
             version('spring-dependencies-management', '1.1.0')
             version('testcontainers', '1.17.6')
 
+            library('spring-cloud-bom', 'org.springframework.cloud', 'spring-cloud-dependencies').versionRef('spring-cloud')
+            library('testcontainers-bom', 'org.testcontainers', 'testcontainers-bom').versionRef('testcontainers')
+
             plugin('spring-boot', 'org.springframework.boot').versionRef('spring-boot')
             plugin('spring-dependencies-management', 'io.spring.dependency-management').versionRef('spring-dependencies-management')
         }

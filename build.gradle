@@ -18,12 +18,10 @@ repositories {
     mavenCentral()
 }
 
-ext {
-    set('springCloudVersion', libs.versions.spring.cloud.get())
-    set('testcontainersVersion', libs.versions.testcontainers.get())
-}
-
 dependencies {
+    implementation platform(libs.spring.cloud.bom)
+    implementation platform(libs.testcontainers.bom)
+
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
@@ -39,13 +37,6 @@ dependencies {
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(libs.versions.java.get())
-    }
-}
-
-dependencyManagement {
-    imports {
-        mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
 }
 
