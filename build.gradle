@@ -48,3 +48,8 @@ test {
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
 }
+
+bootBuildImage {
+    //environment.put("BP_DATADOG_ENABLED", "" + true)
+    verboseLogging = true
+}
