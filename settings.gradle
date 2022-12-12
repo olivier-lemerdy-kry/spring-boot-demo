@@ -4,6 +4,7 @@ dependencyResolutionManagement {
     versionCatalogs {
         libs {
             version('java', '17')
+            version('gradle-release', '3.0.2')
             version('spring-boot', '3.0.0')
             version('spring-cloud', '2021.0.5')
             version('spring-dependencies-management', '1.1.0')
@@ -12,6 +13,7 @@ dependencyResolutionManagement {
             library('spring-cloud-bom', 'org.springframework.cloud', 'spring-cloud-dependencies').versionRef('spring-cloud')
             library('testcontainers-bom', 'org.testcontainers', 'testcontainers-bom').versionRef('testcontainers')
 
+            plugin('gradle-release', 'net.researchgate.release').versionRef('gradle-release')
             plugin('spring-boot', 'org.springframework.boot').versionRef('spring-boot')
             plugin('spring-dependencies-management', 'io.spring.dependency-management').versionRef('spring-dependencies-management')
         }

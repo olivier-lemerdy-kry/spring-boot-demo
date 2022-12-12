@@ -3,9 +3,10 @@ plugins {
     alias(libs.plugins.spring.dependencies.management)
     id 'java'
     id 'jacoco'
+    alias(libs.plugins.gradle.release)
 }
 
-group = 'se.kry.springboot.demo.handson'
+group = 'se.kry.springboot.demo'
 version = '0.0.1-SNAPSHOT'
 
 configurations {
@@ -16,6 +17,14 @@ configurations {
 
 repositories {
     mavenCentral()
+    maven {
+        name = "GitHubPackages"
+        url = "https://maven.pkg.github.com/olivier-lemerdy-kry/spring-boot-demo"
+        credentials {
+            username = System.getenv("GITHUB_ACTOR")
+            password = System.getenv("GITHUB_TOKEN")
+        }
+    }
 }
 
 dependencies {
@@ -47,9 +56,4 @@ test {
 
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
-}
-
-bootBuildImage {
-    //environment.put("BP_DATADOG_ENABLED", "" + true)
-    verboseLogging = true
 }
