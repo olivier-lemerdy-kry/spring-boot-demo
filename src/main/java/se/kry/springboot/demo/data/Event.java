@@ -9,7 +9,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-import java.util.function.UnaryOperator;
+import lombok.Builder;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.domain.Persistable;
@@ -18,6 +18,7 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 import se.kry.springboot.demo.domain.EventConstants;
 
 @Document
+@Builder(toBuilder = true)
 public record Event(@MongoId UUID id,
                     @NotBlank @Size(max = EventConstants.Sizes.TITLE) String title,
                     @NotNull LocalDateTime startTime,
@@ -47,16 +48,5 @@ public record Event(@MongoId UUID id,
   @Override
   public boolean isNew() {
     return createdDate == null;
-  }
-
-  public Event copy(UnaryOperator<String> titleFunction, UnaryOperator<LocalDateTime> startFunction,
-                    UnaryOperator<LocalDateTime> endFunction) {
-    return new Event(id, titleFunction.apply(title), startFunction.apply(startTime), endFunction.apply(endTime),
-        participantIds, createdDate, lastModifiedDate);
-  }
-
-  public Event copy(UnaryOperator<List<UUID>> participantIdsFunction) {
-    return new Event(id, title, startTime, endTime, participantIdsFunction.apply(participantIds),
-        createdDate, lastModifiedDate);
   }
 }

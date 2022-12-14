@@ -1,11 +1,11 @@
 package se.kry.springboot.demo.services;
 
 import jakarta.validation.constraints.NotNull;
+import se.kry.springboot.demo.data.Event;
+import se.kry.springboot.demo.domain.EventCreationRequest;
 import se.kry.springboot.demo.domain.EventParticipantsUpdateRequest;
 import se.kry.springboot.demo.domain.EventResponse;
 import se.kry.springboot.demo.domain.EventUpdateRequest;
-import se.kry.springboot.demo.data.Event;
-import se.kry.springboot.demo.domain.EventCreationRequest;
 
 public enum EventFunctions {
   ;
@@ -18,16 +18,16 @@ public enum EventFunctions {
   }
 
   static Event updateEventFromUpdateRequest(@NotNull Event event, @NotNull EventUpdateRequest updateRequest) {
-    return event.copy(
-        title -> updateRequest.title().orElse(title),
-        start -> updateRequest.startTime().orElse(start),
-        end -> updateRequest.endTime().orElse(end)
-    );
+    var builder = event.toBuilder();
+    updateRequest.title().ifPresent(builder::title);
+    updateRequest.startTime().ifPresent(builder::startTime);
+    updateRequest.endTime().ifPresent(builder::endTime);
+    return builder.build();
   }
 
   static Event updateEventParticipantsFromUpdateRequest(@NotNull Event event,
                                                         @NotNull EventParticipantsUpdateRequest updateRequest) {
-    return event.copy(participantIds -> updateRequest.personIds());
+    return event.toBuilder().participantIds(updateRequest.personIds()).build();
   }
 
   static EventResponse responseFromEvent(Event event) {

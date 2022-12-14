@@ -2,9 +2,9 @@ package se.kry.springboot.demo.services;
 
 import jakarta.validation.constraints.NotNull;
 import se.kry.springboot.demo.data.Person;
-import se.kry.springboot.demo.domain.PersonUpdateRequest;
 import se.kry.springboot.demo.domain.PersonCreationRequest;
 import se.kry.springboot.demo.domain.PersonResponse;
+import se.kry.springboot.demo.domain.PersonUpdateRequest;
 
 enum PersonFunctions {
   ;
@@ -18,8 +18,6 @@ enum PersonFunctions {
   }
 
   static Person updatePersonFromUpdateRequest(Person person, PersonUpdateRequest personUpdateRequest) {
-    return person.copy(
-        name -> personUpdateRequest.name().orElse(name)
-    );
+    return person.withName(personUpdateRequest.name().orElse(person.name()));
   }
 }

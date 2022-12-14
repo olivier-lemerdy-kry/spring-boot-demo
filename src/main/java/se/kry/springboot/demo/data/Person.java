@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.time.Instant;
 import java.util.UUID;
-import java.util.function.UnaryOperator;
+import lombok.With;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.domain.Persistable;
@@ -14,6 +14,7 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 import se.kry.springboot.demo.domain.PersonConstants;
 
 @Document
+@With
 public record Person(@MongoId UUID id,
                      @NotBlank @Size(max = PersonConstants.Sizes.NAME) String name,
                      @CreatedDate Instant createdDate,
@@ -36,9 +37,5 @@ public record Person(@MongoId UUID id,
   @Override
   public boolean isNew() {
     return createdDate == null;
-  }
-
-  public Person copy(UnaryOperator<String> nameFunction) {
-    return new Person(id, nameFunction.apply(name), createdDate, lastModifiedDate);
   }
 }
