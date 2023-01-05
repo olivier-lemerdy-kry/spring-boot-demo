@@ -2,6 +2,7 @@ package se.kry.springboot.demo.web;
 
 import jakarta.validation.Valid;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -17,22 +18,19 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import se.kry.springboot.demo.domain.EventResponse;
 import se.kry.springboot.demo.domain.EventCreationRequest;
 import se.kry.springboot.demo.domain.EventParticipantsUpdateRequest;
+import se.kry.springboot.demo.domain.EventResponse;
 import se.kry.springboot.demo.domain.EventUpdateRequest;
 import se.kry.springboot.demo.domain.PersonResponse;
 import se.kry.springboot.demo.services.EventService;
 
 @RestController
 @RequestMapping("/api/v1/events")
+@RequiredArgsConstructor
 public class EventsController {
 
   private final EventService service;
-
-  public EventsController(EventService service) {
-    this.service = service;
-  }
 
   @PostMapping
   Mono<ResponseEntity<EventResponse>> createEvent(@Valid @RequestBody EventCreationRequest eventCreationRequest,

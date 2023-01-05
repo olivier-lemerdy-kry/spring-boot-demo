@@ -2,6 +2,7 @@ package se.kry.springboot.demo.web;
 
 import jakarta.validation.Valid;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -22,13 +23,10 @@ import se.kry.springboot.demo.services.PersonService;
 
 @RestController
 @RequestMapping("/api/v1/people")
+@RequiredArgsConstructor
 public class PeopleController {
 
   private final PersonService service;
-
-  public PeopleController(PersonService service) {
-    this.service = service;
-  }
 
   @PostMapping
   Mono<ResponseEntity<PersonResponse>> createPerson(@Valid @RequestBody PersonCreationRequest personCreationRequest,

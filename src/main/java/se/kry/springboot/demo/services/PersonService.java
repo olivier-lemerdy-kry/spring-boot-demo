@@ -2,10 +2,10 @@ package se.kry.springboot.demo.services;
 
 import static se.kry.springboot.demo.services.PersonFunctions.newPersonFromCreationRequest;
 import static se.kry.springboot.demo.services.PersonFunctions.updatePersonFromUpdateRequest;
-import static se.kry.springboot.demo.util.ReactivePreconditions.requireNonNull;
 
 import jakarta.validation.constraints.NotNull;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -19,13 +19,10 @@ import se.kry.springboot.demo.domain.PersonUpdateRequest;
 import se.kry.springboot.demo.util.ReactivePreconditions;
 
 @Service
+@RequiredArgsConstructor
 public class PersonService {
 
   private final PersonRepository repository;
-
-  public PersonService(PersonRepository repository) {
-    this.repository = repository;
-  }
 
   @Transactional
   public Mono<PersonResponse> createPerson(@NotNull PersonCreationRequest personCreationRequest) {

@@ -1,9 +1,8 @@
 package se.kry.springboot.demo.services;
 
-import static se.kry.springboot.demo.util.ReactivePreconditions.requireNonNull;
-
 import jakarta.validation.constraints.NotNull;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -13,26 +12,21 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import se.kry.springboot.demo.data.Event;
 import se.kry.springboot.demo.data.EventRepository;
+import se.kry.springboot.demo.data.PersonRepository;
 import se.kry.springboot.demo.domain.EventCreationRequest;
 import se.kry.springboot.demo.domain.EventParticipantsUpdateRequest;
 import se.kry.springboot.demo.domain.EventResponse;
 import se.kry.springboot.demo.domain.EventUpdateRequest;
-import se.kry.springboot.demo.data.PersonRepository;
 import se.kry.springboot.demo.domain.PersonResponse;
 import se.kry.springboot.demo.util.ReactivePreconditions;
 
 @Service
+@RequiredArgsConstructor
 public class EventService {
 
   private final EventRepository eventRepository;
 
   private final PersonRepository personRepository;
-
-  public EventService(EventRepository eventRepository,
-                      PersonRepository personRepository) {
-    this.eventRepository = eventRepository;
-    this.personRepository = personRepository;
-  }
 
   @Transactional
   public Mono<EventResponse> createEvent(@NotNull EventCreationRequest eventCreationRequest) {
