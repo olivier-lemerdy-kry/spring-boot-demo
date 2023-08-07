@@ -1,9 +1,7 @@
 services:
   postgres:
-    image: 'postgres:15'
+    image: postgres:15
     environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+      POSTGRES_PASSWORD: test123
     ports:
-      - '5432'
+      - 5432:5432
